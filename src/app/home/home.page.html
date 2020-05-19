@@ -1,0 +1,78 @@
+<ion-header >
+  <ion-toolbar color="primary">
+    <ion-title>
+      Criar Conta
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ <ion-card>
+  <ion-card-header>
+  <ion-card-title>Sistema Etec</ion-card-title>
+  </ion-card-header>
+
+
+  <form [formGroup]="formLogin" (ngSubmit)="login()">
+
+    <ion-item>
+      <ion-label position="stacked">Nome</ion-label>
+      <ion-input formControlName="nome" type="nome"></ion-input>
+      </ion-item>
+
+  <ion-item>
+  <ion-label position="stacked">E-mail</ion-label>
+  <ion-input formControlName="email" type="email"></ion-input>
+  <ng-container *ngFor="let erro of mensagens_validacao.email">
+    <span
+    *ngIf="formLogin.get('email').hasError(erro.tipo) && (formLogin.get('email').dirty || formLogin.get('email').touched)"
+    class="msg-erro">
+    {{erro.mensagem}}
+    </span>
+    </ng-container>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Sexo</ion-label>
+    <ion-input formControlName="sexo" type="sexo"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Nascimento</ion-label>
+      <ion-input formControlName="nascimento" type="nascimento"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">CPF</ion-label>
+        <ion-input formControlName="CPF" type="CPF"></ion-input>
+        </ion-item>
+
+  <ion-item>
+  <ion-label position="stacked">Senha</ion-label>
+  <ion-input formControlName="senha" type="password"></ion-input>
+  <ng-container *ngFor="let erro of mensagens_validacao.senha">
+    <span
+    *ngIf="formLogin.get('senha').hasError(erro.tipo) && (formLogin.get('senha').dirty || formLogin.get('senha').touched)"
+    class="msg-erro">
+    {{erro.mensagem}}
+    </span>
+    </ng-container>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Confirmar Senha</ion-label>
+    <ion-input formControlName="confirmacao" type="password"></ion-input>
+    <ng-container *ngFor="let erro of mensagens_validacao.confirmacao">
+      <span
+      *ngIf="formLogin.get('confirmacao').hasError(erro.tipo) && (formLogin.get('confirmacao').dirty || formLogin.get('confirmacao').touched)"
+      class="msg-erro">
+      {{erro.mensagem}}
+      </span>
+      </ng-container>
+    </ion-item>
+
+  <br>
+  <ion-button expand="block" color="primary" type="submit">Criar Conta</ion-button>
+  </form>
+  </ion-card>
+</ion-content>
